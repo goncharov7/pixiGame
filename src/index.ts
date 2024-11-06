@@ -85,6 +85,6 @@
 //     window.addEventListener("resize", resize);
 // }
 
-import { Game } from './Game';
+import { Game } from "./Game";
 
 new Game();

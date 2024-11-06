@@ -1,7 +1,7 @@
-import * as PIXI from 'pixi.js';
-import TWEEN from '@tweenjs/tween.js';
-import { SpriteManager } from './SpriteManager';
-import { Score } from './Score';
+import * as PIXI from "pixi.js";
+import TWEEN from "@tweenjs/tween.js";
+import { SpriteManager } from "./SpriteManager";
+import { Score } from "./Score";
 
 export class Game {
     private app: PIXI.Application;
@@ -16,7 +16,7 @@ export class Game {
     private timerText: PIXI.Text;
 
     constructor() {
-        this.app = new PIXI.Application({ width: 800, height: 600, backgroundColor: 0x565E73});
+        this.app = new PIXI.Application({ width: 800, height: 600, backgroundColor: 0x565e73 });
         document.body.appendChild(this.app.view as HTMLCanvasElement);
 
         this.score = new Score();
@@ -25,19 +25,19 @@ export class Game {
         this.startTime = Date.now();
 
         this.scoreText = new PIXI.Text(`Score: 0`, {
-            fontFamily: 'Arial',
+            fontFamily: "Arial",
             fontSize: 24,
-            fill: 0xFFFFFF,
-            align: 'right',
+            fill: 0xffffff,
+            align: "right",
         });
         this.scoreText.x = this.app.screen.width - 105;
         this.scoreText.y = 10;
 
         this.timerText = new PIXI.Text(`Time: 60`, {
-            fontFamily: 'Arial',
+            fontFamily: "Arial",
             fontSize: 24,
-            fill: 0xFFFFFF,
-            align: 'left',
+            fill: 0xffffff,
+            align: "left",
         });
         this.timerText.x = 10;
         this.timerText.y = 10;
@@ -84,26 +84,23 @@ export class Game {
         this.app.stage.addChild(overlay);
 
         const finalText = new PIXI.Text(`Game Over! Your Score: ${this.score.getPoints()}`, {
-            fontFamily: 'Arial',
+            fontFamily: "Arial",
             fontSize: 48,
-            fill: 0xFFFFFF,
-            align: 'center',
+            fill: 0xffffff,
+            align: "center",
         });
         finalText.x = this.app.screen.width / 2 - finalText.width / 2;
         finalText.y = this.app.screen.height / 2 - finalText.height / 2;
 
-        new TWEEN.Tween(finalText.scale)
-            .to({ x: 1.5, y: 1.5 }, 2500)
-            .easing(TWEEN.Easing.Elastic.Out)
-            .start();
+        new TWEEN.Tween(finalText.scale).to({ x: 1.5, y: 1.5 }, 2500).easing(TWEEN.Easing.Elastic.Out).start();
 
         this.app.stage.addChild(finalText);
 
-        const restartButton = new PIXI.Text('Restart', {
-            fontFamily: 'Arial',
+        const restartButton = new PIXI.Text("Restart", {
+            fontFamily: "Arial",
             fontSize: 32,
-            fill: 0xFFFF00,
-            align: 'center',
+            fill: 0xffff00,
+            align: "center",
         });
         restartButton.x = this.app.screen.width / 2 - restartButton.width / 2;
         restartButton.y = finalText.y + finalText.height + 20;
@@ -111,7 +108,7 @@ export class Game {
         restartButton.interactive = true;
         restartButton.buttonMode = true;
 
-        restartButton.on('pointerdown', () => {
+        restartButton.on("pointerdown", () => {
             this.restartGame();
         });
 
@@ -124,9 +121,7 @@ export class Game {
 
         this.app.stage.addChild(restartButton);
 
-        new TWEEN.Tween(overlay)
-            .to({ alpha: 0 }, 2500)
-            .start();
+        new TWEEN.Tween(overlay).to({ alpha: 0 }, 2500).start();
     }
 
     private restartGame() {

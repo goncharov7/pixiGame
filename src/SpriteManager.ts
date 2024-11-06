@@ -1,7 +1,7 @@
-import * as PIXI from 'pixi.js';
-import { Score } from './Score';
-import { Tween, Easing } from '@tweenjs/tween.js';
-import { SpriteFactory } from './SpriteFactory';
+import * as PIXI from "pixi.js";
+import { Score } from "./Score";
+import { Tween, Easing } from "@tweenjs/tween.js";
+import { SpriteFactory } from "./SpriteFactory";
 
 export class SpriteManager {
     private app: PIXI.Application;
@@ -22,20 +22,17 @@ export class SpriteManager {
     }
 
     private animateSprite(sprite: PIXI.Sprite): void {
-        const scaleTween = new Tween(sprite.scale)
-            .to({ x: 0, y: 0 }, 2500)
-            .easing(Easing.Quadratic.Out)
-            .start();
+        const scaleTween = new Tween(sprite.scale).to({ x: 0, y: 0 }, 2500).easing(Easing.Quadratic.Out).start();
 
         sprite.interactive = true;
         sprite.buttonMode = true;
 
-        sprite.on('pointerdown', () => {
-            sprite.off('pointerdown');
+        sprite.on("pointerdown", () => {
+            sprite.off("pointerdown");
             scaleTween.stop();
 
             new Tween(sprite)
-                .to({ alpha: 0 }, 1000) 
+                .to({ alpha: 0 }, 1000)
                 .easing(Easing.Quadratic.Out)
                 .onComplete(() => {
                     if (this.app.stage.children.includes(sprite)) {
