@@ -8,7 +8,7 @@ export class Game {
     private score: Score;
     private spriteManager: SpriteManager;
     private startTime: number;
-    private gameDuration = 5000;
+    private gameDuration = 60000;
     private spawnInterval = 800;
     private lastSpawnTime: number = 0;
 
